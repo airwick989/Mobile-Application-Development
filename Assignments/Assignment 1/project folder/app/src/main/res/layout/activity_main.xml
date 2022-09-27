@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Make Your Own Pizza!"
+        android:textSize="20dp"
+        android:id="@+id/headerPizza"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp">
+    </TextView>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headerPizza"
+        android:background="@drawable/rectanglebg"
+        android:layout_centerHorizontal="true">
+        <!-- Seems the dp across the screen is 300 -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size of the Pizza"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/subheaderSlice">
+        </TextView>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/rgSlice"
+            android:layout_below="@+id/subheaderSlice">
+            <RadioButton
+                android:id="@+id/rb6slice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Round Pizza 6 slices - serves 3 people ($5.50)"
+                android:textSize="12dp"></RadioButton>
+            <RadioButton
+                android:id="@+id/rb8slice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Round Pizza 8 slices - serves 4 people ($7.99)"
+                android:textSize="12dp"></RadioButton>
+            <RadioButton
+                android:id="@+id/rb10slice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Round Pizza 10 slices - serves 5 people ($9.50)"
+                android:textSize="12dp"></RadioButton>
+            <RadioButton
+                android:id="@+id/rb12slice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Round Pizza 12 slices - serves 6 people ($11.38)"
+                android:textSize="12dp"></RadioButton>
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rgSlice"
+            android:id="@+id/spinnerTopping"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Topping"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:id="@+id/subheaderTopping">
+            </TextView>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tooltipText="Select Topping">
+            </Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinnerTopping"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Cost: "
+                android:textSize="12dp"
+                android:id="@+id/txtTotalCost"
+                android:textStyle="bold">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0.00"
+                android:textSize="12dp">
+            </TextView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
