@@ -86,6 +86,7 @@
                 android:textStyle="bold"
                 android:id="@+id/subheaderTopping">
             </TextView>
+            <!-- Look at mon sep 19 for how to use a spinner and link it to array with adapter -->
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
