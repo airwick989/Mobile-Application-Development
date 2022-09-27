@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">mon-sep-19</string>
+    <string-array name="cities">
+        <item>Toronto</item>
+        <item>Oshawa</item>
+        <item>Oakville</item>
+    </string-array>
+
+</resources>
