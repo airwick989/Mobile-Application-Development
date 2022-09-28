@@ -70,79 +70,30 @@
                 android:textSize="12dp"></RadioButton>
         </RadioGroup>
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rgSlice"
-            android:id="@+id/layoutTopping"
-            android:orientation="vertical"
+            android:text="Topping"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:id="@+id/subheaderTopping"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Topping"
-                android:textSize="12dp"
-                android:textStyle="bold"
-                android:id="@+id/subheaderTopping">
-            </TextView>
-            <!-- Look at mon sep 19 for how to use a spinner and link it to array with adapter -->
-            <Spinner
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:tooltipText="Select Topping"
-                android:id="@+id/spinnerTopping">
-            </Spinner>
-        </LinearLayout>
-
-        <CheckBox
-            android:layout_width="wrap_content"
+        </TextView>
+        <!-- Look at mon sep 19 for how to use a spinner and link it to array with adapter -->
+        <Spinner
+            android:id="@+id/spinnerTopping"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cbExtraCheese"
-            android:layout_below="@+id/layoutTopping"
+            android:layout_below="@+id/subheaderTopping"
             android:layout_marginLeft="15dp"
-            android:text="Extra Cheese ($5) "
-            android:textSize="12dp">
-        </CheckBox>
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cbIncludeDelivery"
-            android:layout_below="@+id/cbExtraCheese"
-            android:layout_marginLeft="15dp"
-            android:text="Include Delivery ($5) "
-            android:textSize="12dp">
-        </CheckBox>
+            android:tooltipText="Select Topping"></Spinner>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cbIncludeDelivery"
-            android:id="@+id/layoutInstructions"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Special Instructions"
-                android:textSize="12dp"
-                android:textStyle="bold"
-                android:id="@+id/subheaderInstructions">
-            </TextView>
-            <EditText
-                android:layout_width="285dp"
-                android:layout_height="wrap_content"
-                android:hint="Type Special Instructions Here"
-                android:textSize="12dp">
-            </EditText>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutInstructions"
+            android:layout_below="@+id/spinnerTopping"
             android:orientation="horizontal"
             android:layout_marginLeft="15dp">
             <TextView
@@ -157,8 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$0.00"
-                android:textSize="12dp"
-                android:id="@+id/totalCost">
+                android:textSize="12dp">
             </TextView>
         </LinearLayout>
 

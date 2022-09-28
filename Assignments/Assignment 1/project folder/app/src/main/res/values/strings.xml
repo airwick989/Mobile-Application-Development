@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Pizza Order Application</string>
+    <string-array name="toppings">
+        <item>Mushrooms ($5)</item>
+        <item>Sun Dried Tomatoes ($5)</item>
+        <item>Chicken ($7)</item>
+        <item>Ground Beef ($8)</item>
+        <item>Shrimp ($10)</item>
+        <item>Pineapple ($5)</item>
+        <item>Steak ($9)</item>
+        <item>Avocado ($5)</item>
+        <item>Tuna ($5)</item>
+        <item>Broccoli ($8)</item>
+    </string-array>
 </resources>
