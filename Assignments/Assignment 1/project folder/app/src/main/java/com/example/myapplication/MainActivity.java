@@ -3,24 +3,28 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     Spinner spToppings;
     RadioGroup rgSlice;
     CheckBox cbExtraCheese;
     CheckBox cbIncludeDelivery;
     EditText etInstructions;
+    TextView txtTotalCost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         cbExtraCheese = findViewById(R.id.cbExtraCheese);
         cbIncludeDelivery = findViewById(R.id.cbIncludeDelivery);
         etInstructions = findViewById(R.id.etInstructions);
+        txtTotalCost = findViewById(R.id.totalCost);
 
         spToppings.setEnabled(false);
         cbExtraCheese.setEnabled(false);
@@ -49,14 +54,16 @@ public class MainActivity extends AppCompatActivity {
                 cbExtraCheese.setEnabled(true);
                 cbIncludeDelivery.setEnabled(true);
                 etInstructions.setEnabled(true);
+
                 calcTotal();
             }
         });
     }
 
-    public void calcTotal(){
-        double totalCost, sliceCost, toppingCost;
-        boolean exCheese, incDel;
+
+
+    public double calcTotal(){
+        double totalCost = 0;
 
         Map<String, Double> mapSlice = new HashMap<String, Double>();
         mapSlice.put("Round Pizza 6 slices - serves 3 people ($5.50)", 5.50);
@@ -66,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         int selectedSlice = rgSlice.getCheckedRadioButtonId();
         RadioButton slice = findViewById(selectedSlice);
-        sliceCost = mapSlice.get(slice.getText().toString());
+        totalCost += mapSlice.get(slice.getText().toString());
 
         Map<String, Double> mapTopping = new HashMap<String, Double>();
         mapTopping.put("None", 0.0);
@@ -82,10 +89,18 @@ public class MainActivity extends AppCompatActivity {
         mapTopping.put("Broccoli ($8)", 8.0);
 
         String selectedTopping = spToppings.getSelectedItem().toString();
-        toppingCost = mapTopping.get(selectedTopping);
+        totalCost += mapTopping.get(selectedTopping);
 
-        Toast.makeText(MainActivity.this, mapTopping.get(selectedTopping).toString(), Toast.LENGTH_SHORT).show();
+        if(cbExtraCheese.isChecked()){
+            totalCost += 5.0;
+        }
+        if(cbIncludeDelivery.isChecked()){
+            totalCost += 5.0;
+        }
 
+        String strTotalCost = String.format("%.2f", totalCost);
+        txtTotalCost.setText("$" + strTotalCost);
+        return totalCost;
 
     }
 }
