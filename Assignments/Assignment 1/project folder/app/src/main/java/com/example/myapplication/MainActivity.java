@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     Spinner spToppings;
     RadioGroup rgSlice;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity{
         ArrayAdapter<CharSequence> spAdapter = ArrayAdapter.createFromResource(this, R.array.toppings,
                 android.R.layout.simple_spinner_dropdown_item);
         spToppings.setAdapter(spAdapter);
+        spToppings.setOnItemSelectedListener(this);
 
         cbExtraCheese = findViewById(R.id.cbExtraCheese);
         cbIncludeDelivery = findViewById(R.id.cbIncludeDelivery);
@@ -58,49 +60,79 @@ public class MainActivity extends AppCompatActivity{
                 calcTotal();
             }
         });
+
+        cbExtraCheese.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                calcTotal();
+            }
+        });
+
+        cbIncludeDelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                calcTotal();
+            }
+        });
     }
 
 
 
     public double calcTotal(){
-        double totalCost = 0;
+        double totalCost = 0.00;
 
-        Map<String, Double> mapSlice = new HashMap<String, Double>();
-        mapSlice.put("Round Pizza 6 slices - serves 3 people ($5.50)", 5.50);
-        mapSlice.put("Round Pizza 8 slices - serves 4 people ($7.99)", 7.99);
-        mapSlice.put("Round Pizza 10 slices - serves 5 people ($9.50)", 9.50);
-        mapSlice.put("Round Pizza 12 slices - serves 6 people ($11.38)", 11.38);
+        if (rgSlice.getCheckedRadioButtonId() != -1)
+        {
+            Map<String, Double> mapSlice = new HashMap<String, Double>();
+            mapSlice.put("Round Pizza 6 slices - serves 3 people ($5.50)", 5.50);
+            mapSlice.put("Round Pizza 8 slices - serves 4 people ($7.99)", 7.99);
+            mapSlice.put("Round Pizza 10 slices - serves 5 people ($9.50)", 9.50);
+            mapSlice.put("Round Pizza 12 slices - serves 6 people ($11.38)", 11.38);
 
-        int selectedSlice = rgSlice.getCheckedRadioButtonId();
-        RadioButton slice = findViewById(selectedSlice);
-        totalCost += mapSlice.get(slice.getText().toString());
+            int selectedSlice = rgSlice.getCheckedRadioButtonId();
+            RadioButton slice = findViewById(selectedSlice);
+            totalCost += mapSlice.get(slice.getText().toString());
 
-        Map<String, Double> mapTopping = new HashMap<String, Double>();
-        mapTopping.put("None", 0.0);
-        mapTopping.put("Mushrooms ($5)", 5.0);
-        mapTopping.put("Sun Dried Tomatoes ($5)", 5.0);
-        mapTopping.put("Chicken ($7)", 7.0);
-        mapTopping.put("Ground Beef ($8)", 8.0);
-        mapTopping.put("Shrimp ($10)", 10.0);
-        mapTopping.put("Pineapple ($5)", 5.0);
-        mapTopping.put("Steak ($9)", 9.0);
-        mapTopping.put("Avocado ($5)", 5.0);
-        mapTopping.put("Tuna ($5)", 5.0);
-        mapTopping.put("Broccoli ($8)", 8.0);
+            Map<String, Double> mapTopping = new HashMap<String, Double>();
+            mapTopping.put("None", 0.0);
+            mapTopping.put("Mushrooms ($5)", 5.0);
+            mapTopping.put("Sun Dried Tomatoes ($5)", 5.0);
+            mapTopping.put("Chicken ($7)", 7.0);
+            mapTopping.put("Ground Beef ($8)", 8.0);
+            mapTopping.put("Shrimp ($10)", 10.0);
+            mapTopping.put("Pineapple ($5)", 5.0);
+            mapTopping.put("Steak ($9)", 9.0);
+            mapTopping.put("Avocado ($5)", 5.0);
+            mapTopping.put("Tuna ($5)", 5.0);
+            mapTopping.put("Broccoli ($8)", 8.0);
 
-        String selectedTopping = spToppings.getSelectedItem().toString();
-        totalCost += mapTopping.get(selectedTopping);
+            String selectedTopping = spToppings.getSelectedItem().toString();
+            totalCost += mapTopping.get(selectedTopping);
 
-        if(cbExtraCheese.isChecked()){
-            totalCost += 5.0;
+            if(cbExtraCheese.isChecked()){
+                totalCost += 5.0;
+            }
+            if(cbIncludeDelivery.isChecked()){
+                totalCost += 5.0;
+            }
+
+            String strTotalCost = String.format("%.2f", totalCost);
+            txtTotalCost.setText("$" + strTotalCost);
         }
-        if(cbIncludeDelivery.isChecked()){
-            totalCost += 5.0;
-        }
 
-        String strTotalCost = String.format("%.2f", totalCost);
-        txtTotalCost.setText("$" + strTotalCost);
         return totalCost;
+
+    }
+
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        calcTotal();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }
