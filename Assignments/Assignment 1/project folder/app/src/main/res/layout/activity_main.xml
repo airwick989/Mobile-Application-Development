@@ -88,7 +88,7 @@
             </TextView>
             <!-- Look at mon sep 19 for how to use a spinner and link it to array with adapter -->
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:tooltipText="Select Topping"
                 android:id="@+id/spinnerTopping">
@@ -135,7 +135,8 @@
                 android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:hint="Type Special Instructions Here"
-                android:textSize="12dp">
+                android:textSize="12dp"
+                android:id="@+id/etInstructions">
             </EditText>
         </LinearLayout>
 
@@ -144,12 +145,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layoutInstructions"
             android:orientation="horizontal"
+            android:layout_marginTop="25dp"
             android:layout_marginLeft="15dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total Cost: "
-                android:textSize="12dp"
+                android:textSize="15dp"
                 android:id="@+id/txtTotalCost"
                 android:textStyle="bold">
             </TextView>
@@ -157,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$0.00"
-                android:textSize="12dp"
+                android:textSize="15dp"
                 android:id="@+id/totalCost">
             </TextView>
         </LinearLayout>

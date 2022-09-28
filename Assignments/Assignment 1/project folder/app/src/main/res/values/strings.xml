@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Pizza Order Application</string>
     <string-array name="toppings">
+        <item>None</item>
         <item>Mushrooms ($5)</item>
         <item>Sun Dried Tomatoes ($5)</item>
         <item>Chicken ($7)</item>
