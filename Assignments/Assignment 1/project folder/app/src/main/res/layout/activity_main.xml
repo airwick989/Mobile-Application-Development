@@ -3,170 +3,304 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Make Your Own Pizza!"
-        android:textSize="20dp"
-        android:id="@+id/headerPizza"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp">
-    </TextView>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
 
+        <RelativeLayout
+            android:id="@+id/form_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/headerPizza"
-        android:background="@drawable/rectanglebg"
-        android:layout_centerHorizontal="true">
-        <!-- Seems the dp across the screen is 300 -->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Size of the Pizza"
-            android:textSize="12dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:id="@+id/subheaderSlice">
-        </TextView>
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/rgSlice"
-            android:layout_below="@+id/subheaderSlice">
-            <RadioButton
-                android:id="@+id/rb6slice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Round Pizza 6 slices - serves 3 people ($5.50)"
-                android:textSize="12dp"></RadioButton>
-            <RadioButton
-                android:id="@+id/rb8slice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Round Pizza 8 slices - serves 4 people ($7.99)"
-                android:textSize="12dp"></RadioButton>
-            <RadioButton
-                android:id="@+id/rb10slice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Round Pizza 10 slices - serves 5 people ($9.50)"
-                android:textSize="12dp"></RadioButton>
-            <RadioButton
-                android:id="@+id/rb12slice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Round Pizza 12 slices - serves 6 people ($11.38)"
-                android:textSize="12dp"></RadioButton>
-        </RadioGroup>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rgSlice"
-            android:id="@+id/layoutTopping"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Topping"
-                android:textSize="12dp"
-                android:textStyle="bold"
-                android:id="@+id/subheaderTopping">
+                android:text="Make Your Own Pizza!"
+                android:textSize="20dp"
+                android:id="@+id/headerPizza"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp">
             </TextView>
-            <!-- Look at mon sep 19 for how to use a spinner and link it to array with adapter -->
-            <Spinner
-                android:layout_width="250dp"
+
+
+            <RelativeLayout
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:tooltipText="Select Topping"
-                android:id="@+id/spinnerTopping">
-            </Spinner>
-        </LinearLayout>
+                android:layout_below="@+id/headerPizza"
+                android:background="@drawable/rectanglebg"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/layoutPizza">
+                <!-- Seems the dp across the screen is 300 -->
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cbExtraCheese"
-            android:layout_below="@+id/layoutTopping"
-            android:layout_marginLeft="15dp"
-            android:text="Extra Cheese ($5) "
-            android:textSize="12dp">
-        </CheckBox>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Size of the Pizza"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/subheaderSlice">
+                </TextView>
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/rgSlice"
+                    android:layout_below="@+id/subheaderSlice">
+                    <RadioButton
+                        android:id="@+id/rb6slice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Round Pizza 6 slices - serves 3 people ($5.50)"
+                        android:textSize="12dp"></RadioButton>
+                    <RadioButton
+                        android:id="@+id/rb8slice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Round Pizza 8 slices - serves 4 people ($7.99)"
+                        android:textSize="12dp"></RadioButton>
+                    <RadioButton
+                        android:id="@+id/rb10slice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Round Pizza 10 slices - serves 5 people ($9.50)"
+                        android:textSize="12dp"></RadioButton>
+                    <RadioButton
+                        android:id="@+id/rb12slice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Round Pizza 12 slices - serves 6 people ($11.38)"
+                        android:textSize="12dp"></RadioButton>
+                </RadioGroup>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cbIncludeDelivery"
-            android:layout_below="@+id/cbExtraCheese"
-            android:layout_marginLeft="15dp"
-            android:text="Include Delivery ($5) "
-            android:textSize="12dp">
-        </CheckBox>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rgSlice"
+                    android:id="@+id/layoutTopping"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Topping"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:id="@+id/subheaderTopping">
+                    </TextView>
+                    <!-- Look at mon sep 19 for how to use a spinner and link it to array with adapter -->
+                    <Spinner
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:tooltipText="Select Topping"
+                        android:id="@+id/spinnerTopping">
+                    </Spinner>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cbIncludeDelivery"
-            android:id="@+id/layoutInstructions"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp">
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cbExtraCheese"
+                    android:layout_below="@+id/layoutTopping"
+                    android:layout_marginLeft="15dp"
+                    android:text="Extra Cheese ($5) "
+                    android:textSize="12dp">
+                </CheckBox>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cbIncludeDelivery"
+                    android:layout_below="@+id/cbExtraCheese"
+                    android:layout_marginLeft="15dp"
+                    android:text="Include Delivery ($5) "
+                    android:textSize="12dp">
+                </CheckBox>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cbIncludeDelivery"
+                    android:id="@+id/layoutInstructions"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Special Instructions"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:id="@+id/subheaderInstructions">
+                    </TextView>
+                    <EditText
+                        android:layout_width="285dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Type Special Instructions Here"
+                        android:textSize="12dp"
+                        android:id="@+id/etInstructions">
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutInstructions"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="15dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Cost: "
+                        android:textSize="15dp"
+                        android:id="@+id/txtTotalCost"
+                        android:textStyle="bold">
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0.00"
+                        android:textSize="15dp"
+                        android:id="@+id/totalCost">
+                    </TextView>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Special Instructions"
-                android:textSize="12dp"
-                android:textStyle="bold"
-                android:id="@+id/subheaderInstructions">
+                android:text="Contact Details"
+                android:textSize="20dp"
+                android:id="@+id/headerContact"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/layoutPizza">
             </TextView>
-            <EditText
-                android:layout_width="285dp"
-                android:layout_height="wrap_content"
-                android:hint="Type Special Instructions Here"
-                android:textSize="12dp"
-                android:id="@+id/etInstructions">
-            </EditText>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutInstructions"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="15dp">
-            <TextView
+            <RelativeLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/headerContact"
+                android:background="@drawable/rectanglebg"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/layoutContact">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/layoutName">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textSize="15dp"
+                        android:textStyle="bold">
+                    </TextView>
+                    <EditText
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:id="@+id/etName">
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/layoutAddress"
+                    android:layout_below="@+id/layoutName">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:textSize="15dp"
+                        android:textStyle="bold">
+                    </TextView>
+                    <EditText
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:id="@+id/etAddress">
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/layoutPhone"
+                    android:layout_below="@+id/layoutAddress">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Phone Number"
+                        android:textSize="15dp"
+                        android:textStyle="bold">
+                    </TextView>
+                    <EditText
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:id="@+id/etPhone">
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/layoutEmail"
+                    android:layout_below="@+id/layoutPhone">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email Address"
+                        android:textSize="15dp"
+                        android:textStyle="bold">
+                    </TextView>
+                    <EditText
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:id="@+id/etEmail">
+                    </EditText>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Cost: "
-                android:textSize="15dp"
-                android:id="@+id/txtTotalCost"
-                android:textStyle="bold">
-            </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$0.00"
-                android:textSize="15dp"
-                android:id="@+id/totalCost">
-            </TextView>
-        </LinearLayout>
-
-    </RelativeLayout>
+                android:text="Submit Order"
+                android:layout_below="@+id/layoutContact"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp">
+            </Button>
 
 
-
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
