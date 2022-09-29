@@ -3,6 +3,9 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +29,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     CheckBox cbIncludeDelivery;
     EditText etInstructions;
     TextView txtTotalCost;
+    EditText etEmail;
+    EditText etPhone;
+    EditText etAddress;
+    EditText etName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         cbIncludeDelivery = findViewById(R.id.cbIncludeDelivery);
         etInstructions = findViewById(R.id.etInstructions);
         txtTotalCost = findViewById(R.id.totalCost);
+        etEmail = findViewById(R.id.etEmail);
+        etPhone = findViewById(R.id.etPhone);
+        etPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        etAddress = findViewById(R.id.etAddress);
+        etName = findViewById(R.id.etName);
 
         spToppings.setEnabled(false);
         cbExtraCheese.setEnabled(false);
@@ -78,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-    public double calcTotal(){
+    private double calcTotal(){
         double totalCost = 0.00;
 
         if (rgSlice.getCheckedRadioButtonId() != -1)
@@ -122,6 +134,70 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         return totalCost;
 
+    }
+
+
+
+    private boolean validateForm(){
+        boolean validEmail = false;
+        boolean validPhone = false;
+        boolean validAddress = false;
+        boolean validName = false;
+        boolean validPizza = false;
+
+        //Validate email
+        if(!TextUtils.isEmpty(etEmail.getText().toString()) && Patterns.EMAIL_ADDRESS.matcher(etEmail.getText().toString()).matches()){
+            validEmail = true;
+        }
+        else{
+            Toast.makeText(this, "Please check the format of your email", Toast.LENGTH_SHORT).show();
+        }
+
+        //Validate Phone Number
+        String txtPhone = etPhone.getText().toString().replaceAll("[^0-9]", "");
+        if(txtPhone.length() < 10){
+            Toast.makeText(this, "Phone number must be at least 10 digits", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            validPhone = true;
+        }
+
+        //Validate Address
+        if(etAddress.getText().toString().matches("") || etAddress.getText().toString() == null){
+            Toast.makeText(this, "Please enter an address", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            validAddress = true;
+        }
+
+        //Validate Name
+        if(etAddress.getText().toString().matches("") || etAddress.getText().toString() == null){
+            Toast.makeText(this, "Please enter a Name", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            validName = true;
+        }
+
+        //Validate Pizza selection
+        if(rgSlice.getCheckedRadioButtonId() != -1){
+            validPizza = true;
+        }
+        else{
+            Toast.makeText(this, "Please at least select a pizza", Toast.LENGTH_SHORT).show();
+        }
+
+        return validEmail && validPhone && validAddress && validName && validPizza;
+    }
+
+
+
+    public void submitForm(View view){
+        if(validateForm()){
+            Toast.makeText(this, "Nice", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Bad", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
