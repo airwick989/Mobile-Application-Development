@@ -1,5 +1,9 @@
 package com.example.myapplication;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -36,6 +40,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     EditText etAddress;
     EditText etName;
     Map<String, String> orderDetails = new HashMap<String, String>();
+
+
+
+    ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result != null){
+                        if(result.getData() != null && result.getResultCode() == RESULT_OK){
+                            Toast.makeText(MainActivity.this, "Thank you for ordering!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            });
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,15 +163,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             String strTotalCost = String.format("%.2f", totalCost);
             txtTotalCost.setText("$" + strTotalCost);
+            orderDetails.put("Cost", strTotalCost);
 
             orderDetails.put("Slices", slice.getText().toString());
             orderDetails.put("Topping", selectedTopping);
-            if(etInstructions.getText().toString() == "" || etInstructions.getText().toString() == null){
-                orderDetails.put("Instructions", "None");
-            }
-            else{
-                orderDetails.put("Instructions", etInstructions.getText().toString());
-            }
         }
 
         return totalCost;
@@ -221,12 +236,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             intent.putExtra("keyTopping", orderDetails.get("Topping"));
             intent.putExtra("keyCheese", orderDetails.get("Cheese"));
             intent.putExtra("keyDelivery", orderDetails.get("Delivery"));
-            intent.putExtra("keyInstructions", orderDetails.get("Instructions"));
+            intent.putExtra("keyInstructions", etInstructions.getText().toString());
+            intent.putExtra("keyCost", orderDetails.get("Cost"));
             intent.putExtra("keyName", etName.getText().toString());
             intent.putExtra("keyAddress", etAddress.getText().toString());
             intent.putExtra("keyPhone", etPhone.getText().toString());
             intent.putExtra("keyEmail", etEmail.getText().toString());
-            startActivity(intent);
+            startForResult.launch(intent);
         }
     }
 

@@ -51,7 +51,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textStyle="bold"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/tvSlice">
@@ -77,7 +76,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textStyle="bold"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/tvTopping">
@@ -103,7 +101,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textStyle="bold"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/tvCheese">
@@ -129,7 +126,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textStyle="bold"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/tvDelivery">
@@ -154,8 +150,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textStyle="bold"
+                    android:text=" "
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/tvInstructions">
@@ -167,6 +162,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_below="@+id/layoutInstructions"
+                android:id="@+id/layoutCost">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Cost: "
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/tvCost">
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/layoutCost"
                 android:id="@+id/layoutName">
 
                 <TextView
@@ -181,7 +201,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textStyle="bold"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/tvName">
@@ -207,7 +226,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textStyle="bold"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/tvAddress">
@@ -233,7 +251,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textStyle="bold"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/tvPhone">
@@ -259,7 +276,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textStyle="bold"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:id="@+id/tvEmail"
@@ -279,7 +295,8 @@
             android:layout_below="@+id/layoutConfirmation"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:onClick="goBack">
         </Button>
 
 
