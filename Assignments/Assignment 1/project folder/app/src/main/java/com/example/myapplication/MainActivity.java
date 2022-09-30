@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.TextUtils;
@@ -18,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     EditText etPhone;
     EditText etAddress;
     EditText etName;
+    Map<String, String> orderDetails = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,15 +124,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             String selectedTopping = spToppings.getSelectedItem().toString();
             totalCost += mapTopping.get(selectedTopping);
 
+            orderDetails.clear();
+
             if(cbExtraCheese.isChecked()){
                 totalCost += 5.0;
+                orderDetails.put("Cheese", "Selected ($5)");
+            }
+            else{
+                orderDetails.put("Cheese", "Not Selected");
             }
             if(cbIncludeDelivery.isChecked()){
                 totalCost += 5.0;
+                orderDetails.put("Delivery", "Selected ($5)");
+            }
+            else{
+                orderDetails.put("Delivery", "Not Selected");
             }
 
             String strTotalCost = String.format("%.2f", totalCost);
             txtTotalCost.setText("$" + strTotalCost);
+
+            orderDetails.put("Slices", slice.getText().toString());
+            orderDetails.put("Topping", selectedTopping);
+            if(etInstructions.getText().toString() == "" || etInstructions.getText().toString() == null){
+                orderDetails.put("Instructions", "None");
+            }
+            else{
+                orderDetails.put("Instructions", etInstructions.getText().toString());
+            }
         }
 
         return totalCost;
@@ -193,10 +215,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void submitForm(View view){
         if(validateForm()){
-            Toast.makeText(this, "Nice", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this, "Bad", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+            //orderDetails.get(<Slices, Topping, Cheese, Delivery, Instructions>);
+            intent.putExtra("keySlices", orderDetails.get("Slices"));
+            intent.putExtra("keyTopping", orderDetails.get("Topping"));
+            intent.putExtra("keyCheese", orderDetails.get("Cheese"));
+            intent.putExtra("keyDelivery", orderDetails.get("Delivery"));
+            intent.putExtra("keyInstructions", orderDetails.get("Instructions"));
+            intent.putExtra("keyName", etName.getText().toString());
+            intent.putExtra("keyAddress", etAddress.getText().toString());
+            intent.putExtra("keyPhone", etPhone.getText().toString());
+            intent.putExtra("keyEmail", etEmail.getText().toString());
+            startActivity(intent);
         }
     }
 

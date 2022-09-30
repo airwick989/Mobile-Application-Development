@@ -160,7 +160,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Total Cost: "
-                        android:textSize="15dp"
                         android:id="@+id/txtTotalCost"
                         android:textStyle="bold">
                     </TextView>
@@ -168,7 +167,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$0.00"
-                        android:textSize="15dp"
                         android:id="@+id/totalCost">
                     </TextView>
                 </LinearLayout>
